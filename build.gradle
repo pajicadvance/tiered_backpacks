@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'fabric-loom' version '1.13-SNAPSHOT'
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
@@ -13,7 +13,8 @@ base {
 repositories {
     maven { url = "https://maven.parchmentmc.org" }
     maven { url = "https://maven.terraformersmc.com/" }
-    maven { url = "https://maven.fzzyhmstrs.me/"}
+    maven { url = "https://maven.fzzyhmstrs.me/" }
+    maven { url = "https://maven.wispforest.io/releases" }
     exclusiveContent {
         forRepository {
             maven {
@@ -37,6 +38,13 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
+    modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
+    modImplementation "maven.modrinth:eiv:${property("eiv_version")}"
+    modImplementation "maven.modrinth:shulkerboxtooltip:${property("sbt_version")}"
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/unsophisticated_backpacks.accesswidener")
 }
 
 processResources {
@@ -88,6 +96,7 @@ publishMods {
         requires("fabric-api")
         requires("fzzy-config")
         optional("modmenu")
+        optional("accessories")
     }
 
     curseforge {
@@ -100,5 +109,6 @@ publishMods {
         requires("fabric-api")
         requires("fzzy-config")
         optional("modmenu")
+        optional("accessories")
     }
 }

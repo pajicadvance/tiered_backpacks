@@ -1,29 +1,34 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "unsophisticated_backpacks",
   "version": "${version}",
-  "name": "modname",
-  "description": "",
-  "authors": [],
+  "name": "Unsophisticated Backpacks",
+  "description": "Simple tiered backpacks with Accessories support",
+  "authors": ["pajic", "Moonkey"],
   "contact": {},
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.pajic.modid.ClientMain"
+      "me.pajic.unsophisticated_backpacks.ClientMain"
     ],
     "main": [
-      "me.pajic.modid.Main"
+      "me.pajic.unsophisticated_backpacks.Main"
+    ],
+    "shulkerboxtooltip": [
+      "me.pajic.unsophisticated_backpacks.tooltip.BackpackTooltipCompat"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "unsophisticated_backpacks.mixins.json"
   ],
+  "accessWidener": "unsophisticated_backpacks.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "fzzy_config": "*"
+    "fzzy_config": "*",
+    "accessories": "*"
   }
 }

@@ -1,17 +1,16 @@
-# pajic's Fabric mod template
+# Unsophisticated Backpacks
 
-Preconfigured with:
-- [Parchment](https://parchmentmc.org/) mappings
-- [Stonecutter](https://stonecutter.kikugie.dev/) for multiversioning
-- [Fzzy Config](https://fzzyhmstrs.github.io/fconfig/) for mod configuration
-- [Mod Publish Plugin](https://github.com/modmuss50/mod-publish-plugin) for publishing to Modrinth and CurseForge
+This mod adds tiered backpacks to the game.
 
-Idea run configurations:
-- Run client: Runs the client of the currently active MC version
-- Run server: Runs the server of the currently active MC version
-- Build: Builds the mod for all MC versions
-- Publish: Publishes the mod for all MC versions to Modrinth and CurseForge
+## Features
 
-Required Idea plugins:
-- [Minecraft Development](https://plugins.jetbrains.com/plugin/8327-minecraft-development)
-- [Stonecutter Dev](https://plugins.jetbrains.com/plugin/25044-stonecutter-dev)
+- Six backpack tiers: Leather -> Copper -> Iron -> Golden -> Diamond -> Netherite
+- Size of each backpack fully configurable up to 16x16 slots, with reasonable defaults out of the box
+- Open backpacks by right-clicking them, or from your inventory or chest slot by pressing a keybind (default B)
+- All backpacks except netherite are dyeable like other leather equipment
+- Extensive configuration for toggling equip and open methods and other rules
+
+### Mod support
+
+- [Accessories](https://modrinth.com/mod/accessories): Allows equipping the backpack as an accessory and opening it by pressing a keybind (default B)
+- [Shulker Box Tooltip](https://modrinth.com/mod/shulkerboxtooltip): Allows previewing backpack contents in the tooltip
