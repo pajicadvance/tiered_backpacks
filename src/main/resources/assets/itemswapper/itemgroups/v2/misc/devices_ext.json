@@ -1,0 +1,12 @@
+{
+  "type": "listModification",
+  "target": "itemswapper:v2/misc/devices",
+  "addItems": [
+    "unsophisticated_backpacks:leather_backpack",
+    "unsophisticated_backpacks:copper_backpack",
+    "unsophisticated_backpacks:iron_backpack",
+    "unsophisticated_backpacks:golden_backpack",
+    "unsophisticated_backpacks:diamond_backpack",
+    "unsophisticated_backpacks:netherite_backpack"
+  ]
+}

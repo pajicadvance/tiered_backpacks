@@ -36,6 +36,9 @@
   "item.unsophisticated_backpacks.netherite_backpack": "Netherite Backpack",
   "accessories.slot.backpack": "Backpack",
 
+  "tag.unsophisticated_backpacks.backpacks.description": "An item that can store blocks and items inside. Can be dyed.",
+  "lore.unsophisticated_backpacks.netherite_backpack": "An item that can store blocks and items inside.",
+
   "key.category.unsophisticated_backpacks.keys": "Unsophisticated Backpacks",
   "key.unsophisticated_backpacks.open_backpack": "Open backpack"
 }
