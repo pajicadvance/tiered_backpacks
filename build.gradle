@@ -39,8 +39,8 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
     modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
-    modImplementation "maven.modrinth:eiv:${property("eiv_version")}"
     modImplementation "maven.modrinth:shulkerboxtooltip:${property("sbt_version")}"
+    modRuntimeOnly "maven.modrinth:eiv:${property("eiv_version")}"
 }
 
 loom {
