@@ -11,7 +11,7 @@ public class ClientMain implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MenuScreens.register(Main.BACKPACK_MENU, BackpackScreen::new);
-        BackpackAccessory.clientInit();
+        if (Main.ACCESSORIES_LOADED) BackpackAccessory.clientInit();
         ModKeybinds.init();
     }
 }

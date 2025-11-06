@@ -47,7 +47,7 @@ public class Main implements ModInitializer {
     public void onInitialize() {
         ModItems.init();
         ModNetworking.init();
-        BackpackAccessory.init();
+        if (ACCESSORIES_LOADED) BackpackAccessory.init();
         Registry.register(BuiltInRegistries.MENU, withModNamespace("backpack_menu"), BACKPACK_MENU);
         FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
             String pack = switch (CONFIG.accessorySlot.get()) {
