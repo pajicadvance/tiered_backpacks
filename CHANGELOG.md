@@ -1,1 +1,1 @@
-- Initial release.
+- Fixed backpacks not keeping their dye color when upgraded.
