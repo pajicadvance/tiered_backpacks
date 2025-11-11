@@ -1,1 +1,1 @@
-- Fixed backpacks not keeping their dye color when upgraded.
+- Renamed mod to Tiered Backpacks.
