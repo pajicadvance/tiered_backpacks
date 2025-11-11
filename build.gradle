@@ -44,7 +44,7 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/unsophisticated_backpacks.accesswidener")
+    accessWidenerPath = file("src/main/resources/tiered_backpacks.accesswidener")
 }
 
 processResources {

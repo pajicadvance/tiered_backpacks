@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "unsophisticated_backpacks:item/netherite_backpack"
-  }
-}

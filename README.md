@@ -1,10 +1,10 @@
-# Unsophisticated Backpacks
+# Tiered Backpacks
 
 This mod adds tiered backpacks to the game.
 
 Requires [Fabric API](https://modrinth.com/mod/fabric-api) and [Fzzy Config](https://modrinth.com/mod/fzzy-config). [Mod Menu](https://modrinth.com/mod/modmenu) is required to access the in-game config.
 
-See [Gallery](https://modrinth.com/mod/unsophisticated-backpacks/gallery) tab for recipes, or use [JEI](https://modrinth.com/mod/jei) or [EIV](https://modrinth.com/mod/eiv) for in-game recipes.
+See [Gallery](https://modrinth.com/mod/tiered-backpacks/gallery) tab for recipes, or use [JEI](https://modrinth.com/mod/jei) or [EIV](https://modrinth.com/mod/eiv) for in-game recipes.
 
 ## Features
 

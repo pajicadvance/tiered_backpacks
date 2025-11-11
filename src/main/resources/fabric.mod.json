@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "unsophisticated_backpacks",
+  "id": "tiered_backpacks",
   "version": "${version}",
-  "name": "Unsophisticated Backpacks",
+  "name": "Tiered Backpacks",
   "description": "Simple tiered backpacks with Accessories support",
   "authors": ["pajic", "Moonkey"],
   "contact": {},
@@ -11,19 +11,19 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.pajic.unsophisticated_backpacks.ClientMain"
+      "me.pajic.tiered_backpacks.ClientMain"
     ],
     "main": [
-      "me.pajic.unsophisticated_backpacks.Main"
+      "me.pajic.tiered_backpacks.Main"
     ],
     "shulkerboxtooltip": [
-      "me.pajic.unsophisticated_backpacks.tooltip.BackpackTooltipCompat"
+      "me.pajic.tiered_backpacks.tooltip.BackpackTooltipCompat"
     ]
   },
   "mixins": [
-    "unsophisticated_backpacks.mixins.json"
+    "tiered_backpacks.mixins.json"
   ],
-  "accessWidener": "unsophisticated_backpacks.accesswidener",
+  "accessWidener": "tiered_backpacks.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

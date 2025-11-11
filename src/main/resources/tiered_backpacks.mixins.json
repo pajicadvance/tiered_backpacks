@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.pajic.tiered_backpacks.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ArmorSlotMixin",
+    "CauldronInteractionMixin",
+    "CraftingMenuMixin",
+    "SmithingMenuMixin"
+  ],
+  "client": [
+    "PackSelectionModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

@@ -1,7 +1,6 @@
 {
-  "type": "listModification",
-  "target": "itemswapper:v2/misc/devices",
-  "addItems": [
+  "replace": false,
+  "values": [
     "tiered_backpacks:leather_backpack",
     "tiered_backpacks:copper_backpack",
     "tiered_backpacks:iron_backpack",
