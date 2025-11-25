@@ -28,6 +28,9 @@
     ],
     "client": [
       "${group}.${id}.platform.fabric.FabricClientEntrypoint"
+    ],
+    "shulkerboxtooltip": [
+      "${group}.${id}.tooltip.BackpackTooltipCompat"
     ]
   },
   "mixins": [

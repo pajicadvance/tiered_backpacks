@@ -19,6 +19,9 @@ platform {
 			slug("fzzy-config")
 			forgeVersionRange = "[0,)"
 		}
+		optional("accessories") {
+			slug("accessories")
+		}
 	}
 }
 
@@ -85,6 +88,8 @@ repositories {
 	maven("https://maven.fzzyhmstrs.me/") { name = "Fzzy Config" }
 	maven("https://thedarkcolour.github.io/KotlinForForge/") { name = "KotlinForForge" }
 	maven("https://jitpack.io") { name = "Jitpack" }
+	maven("https://maven.wispforest.io/releases") { name = "Wisp Forest" }
+	maven("https://maven.su5ed.dev/releases") { name = "su5ed" }
 	exclusiveContent {
 		forRepository { maven("https://api.modrinth.com/maven") { name = "Modrinth" } }
 		filter { includeGroup("maven.modrinth") }
@@ -92,11 +97,9 @@ repositories {
 }
 
 dependencies {
-	implementation( "me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
-	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	jarJar("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	implementation("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
-	jarJar("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
+	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
+	implementation("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
+	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
 }
 
 tasks.named("createMinecraftArtifacts") {

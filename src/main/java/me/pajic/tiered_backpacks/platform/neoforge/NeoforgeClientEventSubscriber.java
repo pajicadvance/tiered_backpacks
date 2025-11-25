@@ -1,0 +1,57 @@
+package me.pajic.tiered_backpacks.platform.neoforge;
+
+//? neoforge {
+/*
+import me.pajic.tiered_backpacks.TieredBackpacks;
+import me.pajic.tiered_backpacks.item.BackpackAccessory;
+import me.pajic.tiered_backpacks.keybind.ModKeybinds;
+import me.pajic.tiered_backpacks.menu.ModMenuTypes;
+import me.pajic.tiered_backpacks.ui.BackpackScreen;
+import me.pajic.tiered_backpacks.util.BackpackUtil;
+import me.pajic.tiered_backpacks.util.CompatFlags;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.Registries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.event.TagsUpdatedEvent;
+
+@EventBusSubscriber(modid = TieredBackpacks.MOD_ID, value = Dist.CLIENT)
+public class NeoforgeClientEventSubscriber {
+
+	@SubscribeEvent
+	public static void onClientSetup(final FMLClientSetupEvent event) {
+		TieredBackpacks.onInitializeClient();
+		ModKeybinds.init();
+	}
+
+	@SubscribeEvent
+	private static void initBackpackAccessoryRenderer(TagsUpdatedEvent event) {
+		if (CompatFlags.ACCESSORIES_LOADED) {
+			event.getLookupProvider().lookupOrThrow(Registries.ITEM).getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
+					BackpackAccessory.assignRenderer(itemHolder.value())
+			);
+		}
+	}
+
+	@SubscribeEvent
+	private static void initMenuTypes(RegisterMenuScreensEvent event) {
+		event.register(ModMenuTypes.BACKPACK_MENU, BackpackScreen::new);
+	}
+
+	@SubscribeEvent
+	private static void initKeybinds(RegisterKeyMappingsEvent event) {
+		event.registerCategory(ModKeybinds.MOD_KEYS);
+		event.register(ModKeybinds.OPEN_BACKPACK);
+	}
+
+	@SubscribeEvent
+	private static void onClientTick(ClientTickEvent.Post event) {
+		BackpackUtil.onClientTick(Minecraft.getInstance());
+	}
+}
+*///?}
