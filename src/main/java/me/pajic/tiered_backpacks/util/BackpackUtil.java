@@ -3,9 +3,6 @@ package me.pajic.tiered_backpacks.util;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import me.pajic.tiered_backpacks.item.BackpackAccessory;
-import me.pajic.tiered_backpacks.keybind.ModKeybinds;
-import me.pajic.tiered_backpacks.network.ModNetworking;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
@@ -27,20 +24,6 @@ public class BackpackUtil {
 			case 2 -> backpack = BackpackAccessory.openBackpack(player);
 		}
 		if (!backpack.isEmpty()) TieredBackpacks.xplat().openBackpackScreen(player, backpack);
-	}
-
-	public static void onClientTick(Minecraft client) {
-		if (ModKeybinds.OPEN_BACKPACK.consumeClick() && client.player != null && client.level != null) {
-			if (CompatFlags.ACCESSORIES_LOADED && BackpackAccessory.tryOpenBackpack(client.player)) return;
-			if (client.player.getItemBySlot(EquipmentSlot.CHEST).is(BACKPACKS)) {
-				TieredBackpacks.xplat().sendToServer(new ModNetworking.C2SOpenBackpackPayload(1));
-			}
-			else if (TieredBackpacks.CONFIG.canOpenFromInventory.get()) {
-				if (client.player.getInventory().getNonEquipmentItems().stream().anyMatch(stack -> stack.is(BACKPACKS))) {
-					TieredBackpacks.xplat().sendToServer(new ModNetworking.C2SOpenBackpackPayload(0));
-				}
-			}
-		}
 	}
 
 	public static BackpackDimensions getBackpackDimensions(ItemStack backpack) {

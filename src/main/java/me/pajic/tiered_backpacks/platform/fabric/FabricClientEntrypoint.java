@@ -2,11 +2,12 @@ package me.pajic.tiered_backpacks.platform.fabric;
 
 //? fabric {
 
+import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
 import me.pajic.tiered_backpacks.TieredBackpacks;
-import me.pajic.tiered_backpacks.item.BackpackAccessory;
 import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;
 import me.pajic.tiered_backpacks.ui.BackpackScreen;
+import me.pajic.tiered_backpacks.util.BackpackClientUtil;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import me.pajic.tiered_backpacks.util.CompatFlags;
 import net.fabricmc.api.ClientModInitializer;
@@ -32,7 +33,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 	private void initBackpackAccessoryRenderer() {
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) ->
 				registries.lookupOrThrow(Registries.ITEM).getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
-						BackpackAccessory.assignRenderer(itemHolder.value())
+						AccessoriesRendererRegistry.bindItemToEmptyRenderer(itemHolder.value())
 				)
 		);
 	}
@@ -40,7 +41,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 	private void initKeybinds() {
 		KeyMapping.Category.register(TieredBackpacks.id("keys"));
 		KeyBindingHelper.registerKeyBinding(ModKeybinds.OPEN_BACKPACK);
-		ClientTickEvents.END_CLIENT_TICK.register(BackpackUtil::onClientTick);
+		ClientTickEvents.END_CLIENT_TICK.register(BackpackClientUtil::onClientTick);
 	}
 
 	private void initBackpackMenuScreen() {

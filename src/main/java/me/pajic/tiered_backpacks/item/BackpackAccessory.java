@@ -1,9 +1,7 @@
 package me.pajic.tiered_backpacks.item;
 
 import io.wispforest.accessories.api.AccessoriesCapability;
-import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
 import io.wispforest.accessories.api.core.Accessory;
-import io.wispforest.accessories.api.core.AccessoryRegistry;
 import io.wispforest.accessories.api.slot.SlotEntryReference;
 import io.wispforest.accessories.api.slot.SlotReference;
 import me.pajic.tiered_backpacks.TieredBackpacks;
@@ -11,21 +9,12 @@ import me.pajic.tiered_backpacks.network.ModNetworking;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import java.util.Optional;
 
 public class BackpackAccessory implements Accessory {
-
-	public static void register(Item item) {
-		AccessoryRegistry.register(item, new BackpackAccessory());
-	}
-
-	public static void assignRenderer(Item item) {
-		AccessoriesRendererRegistry.bindItemToEmptyRenderer(item);
-	}
 
 	public static ItemStack openBackpack(Player player) {
 		Optional<AccessoriesCapability> ac = AccessoriesCapability.getOptionally(player);

@@ -2,11 +2,12 @@ package me.pajic.tiered_backpacks.platform.neoforge;
 
 //? neoforge {
 /*
+import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
 import me.pajic.tiered_backpacks.TieredBackpacks;
-import me.pajic.tiered_backpacks.item.BackpackAccessory;
 import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;
 import me.pajic.tiered_backpacks.ui.BackpackScreen;
+import me.pajic.tiered_backpacks.util.BackpackClientUtil;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import me.pajic.tiered_backpacks.util.CompatFlags;
 import net.minecraft.client.Minecraft;
@@ -33,7 +34,7 @@ public class NeoforgeClientEventSubscriber {
 	private static void initBackpackAccessoryRenderer(TagsUpdatedEvent event) {
 		if (CompatFlags.ACCESSORIES_LOADED) {
 			event.getLookupProvider().lookupOrThrow(Registries.ITEM).getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
-					BackpackAccessory.assignRenderer(itemHolder.value())
+					AccessoriesRendererRegistry.bindItemToEmptyRenderer(itemHolder.value())
 			);
 		}
 	}
@@ -51,7 +52,7 @@ public class NeoforgeClientEventSubscriber {
 
 	@SubscribeEvent
 	private static void onClientTick(ClientTickEvent.Post event) {
-		BackpackUtil.onClientTick(Minecraft.getInstance());
+		BackpackClientUtil.onClientTick(Minecraft.getInstance());
 	}
 }
 *///?}

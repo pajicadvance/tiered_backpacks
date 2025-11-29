@@ -2,6 +2,7 @@ package me.pajic.tiered_backpacks.platform.neoforge;
 
 //? neoforge {
 /*
+import io.wispforest.accessories.api.core.AccessoryRegistry;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import me.pajic.tiered_backpacks.item.BackpackAccessory;
@@ -136,7 +137,7 @@ public class NeoforgeEntrypoint {
 	private static void initBackpackAccessory(TagsUpdatedEvent event) {
 		if (CompatFlags.ACCESSORIES_LOADED) {
 			event.getLookupProvider().lookupOrThrow(Registries.ITEM).getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
-					BackpackAccessory.register(itemHolder.value())
+					AccessoryRegistry.register(itemHolder.value(), new BackpackAccessory())
 			);
 		}
 	}
