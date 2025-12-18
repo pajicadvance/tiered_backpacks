@@ -1,1 +1,2 @@
-- Fixed crash on dedicated server.
+- Updated to Minecraft 1.21.11.
+- Fixed crash on launch when Accessories API is not installed.

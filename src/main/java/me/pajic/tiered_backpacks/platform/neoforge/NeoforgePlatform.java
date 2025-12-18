@@ -1,8 +1,8 @@
 package me.pajic.tiered_backpacks.platform.neoforge;
 
 //? neoforge {
-/*
-import me.pajic.tiered_backpacks.network.ModNetworking;
+
+/*import me.pajic.tiered_backpacks.network.ModNetworking;
 import me.pajic.tiered_backpacks.platform.Platform;
 import me.pajic.tiered_backpacks.ui.BackpackMenu;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;

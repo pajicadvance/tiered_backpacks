@@ -2,7 +2,6 @@ package me.pajic.tiered_backpacks.platform.fabric;
 
 //? fabric {
 
-import io.wispforest.accessories.api.core.AccessoryRegistry;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import me.pajic.tiered_backpacks.item.BackpackAccessory;
@@ -68,10 +67,8 @@ public class FabricEntrypoint implements ModInitializer {
 	}
 
 	private void initBackpackAccessory() {
-		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) ->
-				registries.lookupOrThrow(Registries.ITEM).getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
-						AccessoryRegistry.register(itemHolder.value(), new BackpackAccessory())
-				)
+		if (CompatFlags.ACCESSORIES_LOADED) CommonLifecycleEvents.TAGS_LOADED.register((registries, client) ->
+				BackpackAccessory.initBackpackAccessory(registries.lookupOrThrow(Registries.ITEM))
 		);
 	}
 

@@ -41,7 +41,7 @@ public abstract class SmithingMenuMixin extends ItemCombinerMenu {
             @Local(argsOnly = true) RecipeHolder<SmithingRecipe> recipeHolder,
             @Local ItemStack result
     ) {
-        if (recipeHolder.id().location().equals(TieredBackpacks.id("netherite_backpack_smithing"))) {
+        if (recipeHolder.id().identifier().equals(TieredBackpacks.id("netherite_backpack_smithing"))) {
             result.set(DataComponents.CONTAINER, slots.get(1).getItem().getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
         }
     }

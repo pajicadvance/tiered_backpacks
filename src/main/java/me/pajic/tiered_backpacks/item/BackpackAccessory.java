@@ -2,14 +2,16 @@ package me.pajic.tiered_backpacks.item;
 
 import io.wispforest.accessories.api.AccessoriesCapability;
 import io.wispforest.accessories.api.core.Accessory;
+import io.wispforest.accessories.api.core.AccessoryRegistry;
 import io.wispforest.accessories.api.slot.SlotEntryReference;
 import io.wispforest.accessories.api.slot.SlotReference;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.network.ModNetworking;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import java.util.Optional;
@@ -33,6 +35,12 @@ public class BackpackAccessory implements Accessory {
         }
         return false;
     }
+
+	public static void initBackpackAccessory(HolderLookup.RegistryLookup<Item> lookup) {
+		lookup.getOrThrow(BackpackUtil.BACKPACKS).forEach(itemHolder ->
+				AccessoryRegistry.register(itemHolder.value(), new BackpackAccessory())
+		);
+	}
 
     @Override
     public boolean canUnequip(ItemStack stack, SlotReference reference) {

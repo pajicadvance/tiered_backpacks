@@ -34,7 +34,7 @@ public class CraftingMenuMixin {
     ) {
         if (
                 original.is(BackpackUtil.BACKPACKS) &&
-                recipeHolder.id().location().getNamespace().equals(TieredBackpacks.MOD_ID) &&
+                recipeHolder.id().identifier().getNamespace().equals(TieredBackpacks.MOD_ID) &&
                 recipe instanceof ShapedRecipe
         ) {
             input.items().stream().filter(stack -> stack.is(BackpackUtil.BACKPACKS))

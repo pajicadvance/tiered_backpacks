@@ -26,22 +26,19 @@ platform {
 }
 
 stonecutter {
+	filters.exclude("**/*.accesswidener", "**/*.cfg")
 	val dir = eval(current.version, ">1.21.10")
 	replacements.string {
 		direction = dir
-		replace(".ResourceLocation", ".Identifier")
+		replace("ValidatedIdentifier", "ValidatedIdentifier")
 	}
 	replacements.string {
 		direction = dir
-		replace("ResourceLocation.", "Identifier.")
+		replace("ResourceLocation", "Identifier")
 	}
 	replacements.string {
 		direction = dir
-		replace("<ResourceLocation", "<Identifier")
-	}
-	replacements.string {
-		direction = dir
-		replace(" ResourceLocation ", " Identifier ")
+		replace(".location()", ".identifier()")
 	}
 }
 
@@ -98,7 +95,7 @@ repositories {
 
 dependencies {
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
-	implementation("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
+	compileOnly("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
 }
 

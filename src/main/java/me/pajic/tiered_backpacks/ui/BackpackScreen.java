@@ -7,14 +7,14 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import org.jetbrains.annotations.NotNull;
 
 public class BackpackScreen extends AbstractContainerScreen<BackpackMenu> {
-    private static final ResourceLocation GUI_TEXTURE = TieredBackpacks.id("backpack");
-    private static final ResourceLocation SLOT_TEXTURE = ResourceLocation.withDefaultNamespace("container/slot");
+    private static final Identifier GUI_TEXTURE = TieredBackpacks.id("backpack");
+    private static final Identifier SLOT_TEXTURE = Identifier.withDefaultNamespace("container/slot");
     private final int rows;
     private final int columns;
 

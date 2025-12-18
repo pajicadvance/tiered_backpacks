@@ -1,8 +1,8 @@
 package me.pajic.tiered_backpacks.platform.neoforge;
 
 //? neoforge {
-/*
-import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
+
+/*import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;

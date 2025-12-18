@@ -52,22 +52,19 @@ loom {
 }
 
 stonecutter {
+	filters.exclude("**/*.accesswidener", "**/*.cfg")
 	val dir = eval(current.version, ">1.21.10")
 	replacements.string {
 		direction = dir
-		replace(".ResourceLocation", ".Identifier")
+		replace("ValidatedIdentifier", "ValidatedIdentifier")
 	}
 	replacements.string {
 		direction = dir
-		replace("ResourceLocation.", "Identifier.")
+		replace("ResourceLocation", "Identifier")
 	}
 	replacements.string {
 		direction = dir
-		replace("<ResourceLocation", "<Identifier")
-	}
-	replacements.string {
-		direction = dir
-		replace(" ResourceLocation ", " Identifier ")
+		replace(".location()", ".identifier()")
 	}
 }
 
@@ -102,6 +99,6 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	modImplementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
 	modImplementation("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
-	modImplementation("io.wispforest:accessories-fabric:${prop("deps.accessories")}")
+	modCompileOnly("io.wispforest:accessories-fabric:${prop("deps.accessories")}")
 	modImplementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
 }
