@@ -8,6 +8,7 @@ import me.pajic.tiered_backpacks.item.BackpackAccessory;
 import me.pajic.tiered_backpacks.item.ModItems;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;
 import me.pajic.tiered_backpacks.network.ModNetworking;
+import me.pajic.tiered_backpacks.recipe.ModRecipes;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import me.pajic.tiered_backpacks.util.CompatFlags;
 import net.fabricmc.api.ModInitializer;
@@ -87,39 +88,54 @@ public class FabricEntrypoint implements ModInitializer {
 				ModDataComponents.BACKPACK_TIER
 		);
 		Registry.register(
+				BuiltInRegistries.DATA_COMPONENT_TYPE,
+				TieredBackpacks.id("stored_dye"),
+				ModDataComponents.STORED_BACKPACK_DYE
+		);
+		Registry.register(
 				BuiltInRegistries.MENU,
 				TieredBackpacks.id("backpack_menu"),
 				ModMenuTypes.BACKPACK_MENU
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("leather_backpack")),
+				TieredBackpacks.id("leather_backpack"),
 				ModItems.LEATHER_BACKPACK
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("copper_backpack")),
+				TieredBackpacks.id("copper_backpack"),
 				ModItems.COPPER_BACKPACK
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("iron_backpack")),
+				TieredBackpacks.id("iron_backpack"),
 				ModItems.IRON_BACKPACK
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("golden_backpack")),
+				TieredBackpacks.id("golden_backpack"),
 				ModItems.GOLDEN_BACKPACK
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("diamond_backpack")),
+				TieredBackpacks.id("diamond_backpack"),
 				ModItems.DIAMOND_BACKPACK
 		);
 		Registry.register(
 				BuiltInRegistries.ITEM,
-				ResourceKey.create(Registries.ITEM, TieredBackpacks.id("netherite_backpack")),
+				TieredBackpacks.id("netherite_backpack"),
 				ModItems.NETHERITE_BACKPACK
+		);
+		Registry.register(
+				BuiltInRegistries.RECIPE_SERIALIZER,
+				TieredBackpacks.id("crafting_special_attach_backpack"),
+				ModRecipes.ATTACH_BACKPACK
+		);
+		Registry.register(
+				BuiltInRegistries.RECIPE_SERIALIZER,
+				TieredBackpacks.id("crafting_special_detach_backpack"),
+				ModRecipes.DETACH_BACKPACK
 		);
 	}
 

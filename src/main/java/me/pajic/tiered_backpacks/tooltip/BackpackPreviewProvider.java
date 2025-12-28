@@ -8,7 +8,9 @@ import me.pajic.tiered_backpacks.util.BackpackDimensions;
 import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemContainerContents;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,13 +43,12 @@ public class BackpackPreviewProvider implements PreviewProvider {
 
     @Override
     public ColorKey getWindowColorKey(@NotNull PreviewContext context) {
-        return switch (context.stack().getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER)) {
-            case LEATHER -> ColorKey.ofRgb(-6265536);
-            case COPPER -> ColorKey.ofRgb(-2790072);
-            case IRON -> ColorKey.ofRgb(-3947581);
-            case GOLDEN -> ColorKey.ofRgb(-1659115);
-            case DIAMOND -> ColorKey.ofRgb(-11932970);
-            case NETHERITE -> ColorKey.ofRgb(-11777972);
-        };
+		ItemStack stack = context.stack();
+		DyedItemColor dye;
+		if (stack.is(ItemTags.CHEST_ARMOR)) dye = stack.get(ModDataComponents.STORED_BACKPACK_DYE);
+		else dye = stack.get(DataComponents.DYED_COLOR);
+		return dye != null ?
+				ColorKey.ofRgb(dye.rgb()) :
+				ColorKey.ofRgb(stack.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER).getColor());
     }
 }

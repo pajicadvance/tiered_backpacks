@@ -19,7 +19,7 @@ public class ArmorSlotMixin {
             at = @At("RETURN")
     )
     private boolean modifyMayPickup(boolean original, @Local ItemStack stack) {
-        return TieredBackpacks.CONFIG.preventUnequipWhenNotEmpty.get() && stack.is(BackpackUtil.BACKPACKS) ?
+        return TieredBackpacks.CONFIG.preventUnequipWhenNotEmpty.get() && BackpackUtil.isValidContainerHolder(stack) ?
                 stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY) == ItemContainerContents.EMPTY
                 : original;
     }

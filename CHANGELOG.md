@@ -1,2 +1,6 @@
-- Updated to Minecraft 1.21.11.
-- Fixed crash on launch when Accessories API is not installed.
+- Added ability to attach backpacks to chestplates:
+  - Allows crafting chestplates with backpacks attached to them by combining any chestplate with any backpack in the crafting menu.
+  - The chestplate can then be equipped normally and the attached backpack can be opened with the "Open backpack" keybind.
+  - The backpack can be detached from the chestplate in the crafting menu.
+  - Attaching and detaching backpacks keeps their contents and dye.
+- If the backpack is dyed, the background color of the tooltip from Shulker Box Tooltip will now match the dye, otherwise the tier color will be used.

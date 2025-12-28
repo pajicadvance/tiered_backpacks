@@ -25,7 +25,7 @@ public class BackpackSlot extends Slot {
     }
 
     private boolean check(ItemStack stack) {
-        if (stack.is(BackpackUtil.BACKPACKS)) return false;
+        if (BackpackUtil.isValidContainerHolder(stack)) return false;
         return TieredBackpacks.CONFIG.canStoreShulkers.get() || !stack.is(ItemTags.SHULKER_BOXES);
     }
 }

@@ -25,6 +25,7 @@ public class ModConfig extends Config {
 	public ValidatedAny<BackpackDimensions> netheriteSize = new ValidatedAny<>(new BackpackDimensions(6, 13));
 	public ValidatedBoolean canOpenFromInventory = new ValidatedBoolean(true);
 	public ValidatedBoolean canOpenWithRightClick = new ValidatedBoolean(true);
+	public ValidatedBoolean canAttachToChestplate = new ValidatedBoolean(true);
 	@RequiresAction(action = Action.RESTART) public ValidatedBoolean canEquipInChestSlot = new ValidatedBoolean(false);
 	public ValidatedBoolean canStoreShulkers = new ValidatedBoolean(false);
 	public ValidatedBoolean preventUnequipWhenNotEmpty = new ValidatedBoolean(false);

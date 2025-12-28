@@ -24,7 +24,7 @@ public class BackpackMenu extends AbstractContainerMenu {
     public BackpackMenu(int containerId, Inventory playerInventory, ItemStack backpack) {
         super(ModMenuTypes.BACKPACK_MENU, containerId);
         this.backpack = backpack;
-        if (backpack.is(BackpackUtil.BACKPACKS)) {
+        if (BackpackUtil.isValidContainerHolder(backpack)) {
             BackpackDimensions dimensions = BackpackUtil.getBackpackDimensions(backpack);
             int rows = dimensions.rows.get();
             int columns = dimensions.columns.get();
@@ -109,7 +109,7 @@ public class BackpackMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(@NotNull Player player) {
-        return backpack.is(BackpackUtil.BACKPACKS);
+        return BackpackUtil.isValidContainerHolder(backpack);
     }
 
     public ItemStack getBackpack() {

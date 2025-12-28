@@ -3,8 +3,10 @@ package me.pajic.tiered_backpacks.util;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import me.pajic.tiered_backpacks.item.BackpackAccessory;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
@@ -35,5 +37,16 @@ public class BackpackUtil {
 			case DIAMOND -> TieredBackpacks.CONFIG.diamondSize.get();
 			case NETHERITE -> TieredBackpacks.CONFIG.netheriteSize.get();
 		};
+	}
+
+	public static boolean isValidContainerHolder(ItemStack stack) {
+		return stack.is(BACKPACKS) || isChestplateWithBackpackAttached(stack);
+	}
+
+	public static boolean isChestplateWithBackpackAttached(ItemStack stack) {
+		return TieredBackpacks.CONFIG.canAttachToChestplate.get() &&
+				stack.is(ItemTags.CHEST_ARMOR) &&
+				stack.has(DataComponents.CONTAINER) &&
+				stack.has(ModDataComponents.BACKPACK_TIER);
 	}
 }

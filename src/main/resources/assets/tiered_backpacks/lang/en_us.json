@@ -9,6 +9,8 @@
   "tiered_backpacks.config.canOpenFromInventory": "Allow opening from inventory",
   "tiered_backpacks.config.canOpenFromInventory.desc": "Allows opening the first backpack found in the inventory with the Open Backpack key.",
   "tiered_backpacks.config.canOpenWithRightClick": "Allow right click opening",
+  "tiered_backpacks.config.canAttachToChestplate": "Allow attaching to chestplate",
+  "tiered_backpacks.config.canAttachToChestplate.desc": "Allows crafting chestplates with backpacks attached to them by combining any chestplate with any backpack in the crafting menu. The chestplate can then be equipped normally and the attached backpack can be opened with the \"Open backpack\" keybind. The backpack can be detached from the chestplate in the crafting menu.",
   "tiered_backpacks.config.canEquipInChestSlot": "Allow equipping in chest slot",
   "tiered_backpacks.config.canEquipInChestSlot.desc": "Allows equipping a backpack in the chest slot and opening it with the Open Backpack key.",
   "tiered_backpacks.config.canStoreShulkers": "Allow storing shulkers",
@@ -35,6 +37,8 @@
   "item.tiered_backpacks.diamond_backpack": "Diamond Backpack",
   "item.tiered_backpacks.netherite_backpack": "Netherite Backpack",
   "accessories.slot.backpack": "Backpack",
+
+  "text.tiered_backpacks.attachment": "Attached backpack: %s",
 
   "tag.tiered_backpacks.backpacks.description": "An item that can store blocks and items inside. Can be dyed.",
   "lore.tiered_backpacks.netherite_backpack": "An item that can store blocks and items inside.",

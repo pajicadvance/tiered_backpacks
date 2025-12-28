@@ -5,18 +5,24 @@ import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
 public enum BackpackTier implements StringRepresentable, EnumTranslatable {
-    LEATHER("leather"),
-    COPPER("copper"),
-    IRON("iron"),
-    GOLDEN("golden"),
-    DIAMOND("diamond"),
-    NETHERITE("netherite");
+    LEATHER("leather", -6265536),
+    COPPER("copper", -2790072),
+    IRON("iron", -3947581),
+    GOLDEN("golden", -1659115),
+    DIAMOND("diamond", -11932970),
+    NETHERITE("netherite", -11777972);
 
     private final String name;
+	private final int color;
 
-    BackpackTier(String name) {
+    BackpackTier(String name, int color) {
         this.name = name;
+		this.color = color;
     }
+
+	public int getColor() {
+		return color;
+	}
 
     @Override
     public @NotNull String getSerializedName() {

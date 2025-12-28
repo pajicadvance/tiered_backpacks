@@ -6,16 +6,17 @@ import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.network.ModNetworking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class BackpackClientUtil {
 
 	public static void onClientTick(Minecraft client) {
 		if (ModKeybinds.OPEN_BACKPACK.consumeClick() && client.player != null && client.level != null) {
 			if (CompatFlags.ACCESSORIES_LOADED && BackpackAccessory.tryOpenBackpack(client.player)) return;
-			if (client.player.getItemBySlot(EquipmentSlot.CHEST).is(BackpackUtil.BACKPACKS)) {
+			ItemStack chestItem = client.player.getItemBySlot(EquipmentSlot.CHEST);
+			if (BackpackUtil.isValidContainerHolder(chestItem)) {
 				TieredBackpacks.xplat().sendToServer(new ModNetworking.C2SOpenBackpackPayload(1));
-			}
-			else if (TieredBackpacks.CONFIG.canOpenFromInventory.get()) {
+			} else if (TieredBackpacks.CONFIG.canOpenFromInventory.get()) {
 				if (client.player.getInventory().getNonEquipmentItems().stream().anyMatch(stack -> stack.is(BackpackUtil.BACKPACKS))) {
 					TieredBackpacks.xplat().sendToServer(new ModNetworking.C2SOpenBackpackPayload(0));
 				}

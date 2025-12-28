@@ -8,6 +8,7 @@ import me.pajic.tiered_backpacks.item.BackpackAccessory;
 import me.pajic.tiered_backpacks.item.ModItems;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;
 import me.pajic.tiered_backpacks.network.ModNetworking;
+import me.pajic.tiered_backpacks.recipe.ModRecipes;
 import me.pajic.tiered_backpacks.tooltip.PreviewExtensionPoint;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import me.pajic.tiered_backpacks.util.CompatFlags;
@@ -69,7 +70,10 @@ public class NeoforgeEntrypoint {
 		ModNetworking.init();
 		event.register(
 				Registries.DATA_COMPONENT_TYPE,
-				registry -> registry.register(TieredBackpacks.id("tier"), ModDataComponents.BACKPACK_TIER)
+				registry -> {
+					registry.register(TieredBackpacks.id("tier"), ModDataComponents.BACKPACK_TIER);
+					registry.register(TieredBackpacks.id("stored_dye"), ModDataComponents.STORED_BACKPACK_DYE);
+				}
 		);
 		event.register(
 				Registries.MENU,
@@ -92,6 +96,13 @@ public class NeoforgeEntrypoint {
 				ModItems.IRON_BACKPACK, CauldronInteraction::dyedItemIteration,
 				ModItems.GOLDEN_BACKPACK, CauldronInteraction::dyedItemIteration,
 				ModItems.DIAMOND_BACKPACK, CauldronInteraction::dyedItemIteration)
+		);
+		event.register(
+				Registries.RECIPE_SERIALIZER,
+				registry -> {
+					registry.register(TieredBackpacks.id("crafting_special_attach_backpack"), ModRecipes.ATTACH_BACKPACK);
+					registry.register(TieredBackpacks.id("crafting_special_detach_backpack"), ModRecipes.DETACH_BACKPACK);
+				}
 		);
 	}
 
