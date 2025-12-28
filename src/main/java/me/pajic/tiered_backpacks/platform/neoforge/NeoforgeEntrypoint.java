@@ -40,7 +40,6 @@ public class NeoforgeEntrypoint {
 
 	@SubscribeEvent
 	private static void onCommonSetup(FMLCommonSetupEvent event) {
-		TieredBackpacks.onInitialize();
 		if (CompatFlags.SHULKER_BOX_TOOLTIP_LOADED) PreviewExtensionPoint.register();
 	}
 

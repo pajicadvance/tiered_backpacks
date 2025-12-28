@@ -23,7 +23,6 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		TieredBackpacks.onInitializeClient();
 		ModKeybinds.init();
 		if (CompatFlags.ACCESSORIES_LOADED) initBackpackAccessoryRenderer();
 		initKeybinds();

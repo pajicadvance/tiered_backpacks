@@ -13,10 +13,6 @@ public interface Platform {
 
 	boolean isDebug();
 
-	ModLoader loader();
-
-	String mcVersion();
-
 	void sendToServer(CustomPacketPayload payload);
 
 	void sendToClient(ServerPlayer player, CustomPacketPayload payload);
@@ -24,23 +20,4 @@ public interface Platform {
 	MenuType<BackpackMenu> constructMenu();
 
 	InteractionResult openBackpackScreen(Player player, ItemStack backpack);
-
-	enum ModLoader {
-		FABRIC, NEOFORGE, FORGE
-	}
-
-	enum VersionedPackType {
-		ASSETS("rp"),
-		DATA("dp");
-
-		private final String path;
-
-		VersionedPackType(String path) {
-			this.path = path;
-		}
-
-		public String getName() {
-			return "/" + path;
-		}
-	}
 }

@@ -26,16 +26,6 @@ public class NeoforgePlatform implements Platform {
 	}
 
 	@Override
-	public ModLoader loader() {
-		return ModLoader.NEOFORGE;
-	}
-
-	@Override
-	public String mcVersion() {
-		return FMLLoader.getCurrent().getVersionInfo().mcVersion();
-	}
-
-	@Override
 	public void sendToServer(CustomPacketPayload payload) {
 		ClientPacketDistributor.sendToServer(payload);
 	}

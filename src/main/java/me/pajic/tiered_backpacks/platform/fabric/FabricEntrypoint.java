@@ -33,7 +33,6 @@ public class FabricEntrypoint implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		TieredBackpacks.onInitialize();
 		ModDataComponents.init();
 		ModItems.init();
 		ModMenuTypes.init();

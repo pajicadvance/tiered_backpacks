@@ -29,16 +29,6 @@ public class FabricPlatform implements Platform {
 	}
 
 	@Override
-	public ModLoader loader() {
-		return ModLoader.FABRIC;
-	}
-
-	@Override
-	public String mcVersion() {
-		return FabricLoader.getInstance().getRawGameVersion();
-	}
-
-	@Override
 	public boolean isDebug() {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
@@ -74,7 +64,7 @@ public class FabricPlatform implements Platform {
 				}
 
 				@Override
-				public ModNetworking.S2CBackpackScreenPayload getScreenOpeningData(ServerPlayer serverPlayer) {
+				public ModNetworking.S2CBackpackScreenPayload getScreenOpeningData(@NotNull ServerPlayer serverPlayer) {
 					return new ModNetworking.S2CBackpackScreenPayload(backpack);
 				}
 			});

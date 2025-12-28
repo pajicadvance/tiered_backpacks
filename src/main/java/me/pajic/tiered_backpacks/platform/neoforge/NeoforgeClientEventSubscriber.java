@@ -26,7 +26,6 @@ public class NeoforgeClientEventSubscriber {
 
 	@SubscribeEvent
 	public static void onClientSetup(final FMLClientSetupEvent event) {
-		TieredBackpacks.onInitializeClient();
 		ModKeybinds.init();
 	}
 
