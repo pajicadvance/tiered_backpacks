@@ -37,12 +37,11 @@ fun RepositoryHandler.strictMaven(
 abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	override fun apply(project: Project) = with(project) {
 		val inferredLoader = project.buildFile.name.substringAfter('.').replace(".gradle.kts", "")
-		val inferredLoaderIsFabric = inferredLoader == "fabric"
 
 		val extension = extensions.create("platform", ModPlatformExtension::class.java).apply {
 			loader.convention(inferredLoader)
-			jarTask.convention(if (inferredLoaderIsFabric) "remapJar" else "jar")
-			sourcesJarTask.convention(if (inferredLoaderIsFabric) "remapSourcesJar" else "sourcesJar")
+			jarTask.convention("jar")
+			sourcesJarTask.convention("sourcesJar")
 		}
 
 		listOf(
@@ -60,7 +59,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		val loader = extension.loader.get()
 		val isFabric = loader == "fabric"
 		val isNeoForge = loader == "neoforge"
-		val isForge = loader == "forge"
 
 		val modId = prop("mod.id")
 		val modVersion = prop("mod.version")
@@ -77,45 +75,30 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 		version = "$modVersion$channelTag+$mcVersion-$loader"
 
-		extension.requiredJava.set(
-			when {
-				stonecutter.eval(stonecutter.current.version, ">=1.20.6") -> JavaVersion.VERSION_21
-				stonecutter.eval(stonecutter.current.version, ">=1.18") -> JavaVersion.VERSION_17
-				stonecutter.eval(stonecutter.current.version, ">=1.17") -> JavaVersion.VERSION_16
-				else -> JavaVersion.VERSION_1_8
-			}
-		)
+		extension.requiredJava.set(JavaVersion.VERSION_25)
 
 		if (isFabric) {
 			extension.dependencies { required("java") { versionRange = ">=${extension.requiredJava.get().majorVersion}" } }
 		}
 
 		configureFletchingTable()
-		configureJarTask(modId, loader)
+		configureJarTask(modId)
 		configureIdea()
-		configureProcessResources(isFabric, isNeoForge, isForge, modId, "$modVersion$channelTag", mcVersion, extension, extension.requiredJava.get())
+		configureProcessResources(isFabric, isNeoForge, modId, "$modVersion$channelTag", mcVersion, extension, extension.requiredJava.get())
 		configureJava(stonecutter, extension.requiredJava.get())
 		registerBuildAndCollectTask(extension, "$modVersion$channelTag")
 		configurePublishing(extension, loader, stonecutter, "$modVersion$channelTag", channelTag, version.toString())
 	}
 
-	private fun Project.configureJarTask(modId: String, loader: String) {
-		val isForge = loader == "forge"
-
+	private fun Project.configureJarTask(modId: String) {
 		tasks.withType<Jar>().configureEach {
 			archiveBaseName.set(modId)
-			if (isForge) {
-				manifest.attributes(
-					"MixinConfigs" to "${modId}.mixins.json"
-				)
-			}
 		}
 	}
 
 	private fun Project.configureProcessResources(
 		isFabric: Boolean,
 		isNeoForge: Boolean,
-		isForge: Boolean,
 		modId: String,
 		modVersion: String,
 		mcVersion: String,
@@ -166,11 +149,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 				isNeoForge -> {
 					filesMatching("META-INF/neoforge.mods.toml") { expand(props) }
 					exclude("META-INF/mods.toml", "fabric.mod.json", "aw/*.accesswidener", ".cache", "pack.mcmeta")
-				}
-
-				isForge -> {
-					filesMatching("META-INF/mods.toml") { expand(props) }
-					exclude("META-INF/neoforge.mods.toml", "fabric.mod.json", "aw/*.accesswidener", ".cache")
 				}
 			}
 		}
@@ -225,7 +203,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	private fun Project.configureJava(stonecutter: StonecutterBuildExtension, requiredJava: JavaVersion) {
 		extensions.configure<JavaPluginExtension>("java") {
 			withSourcesJar()
-			withJavadocJar()
 			sourceCompatibility = requiredJava
 			targetCompatibility = requiredJava
 		}
@@ -253,8 +230,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			group = "build"
 			from(
 				tasks.named(extension.jarTask.get()),
-				tasks.named(extension.sourcesJarTask.get()),
-				tasks.named("javadocJar").get()
+				tasks.named(extension.sourcesJarTask.get())
 			)
 			into(rootProject.layout.buildDirectory.file("libs/$modVersion"))
 			dependsOn("build")
@@ -278,8 +254,8 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		extensions.configure<ModPublishExtension>("publishMods") {
 			val mrStaging = envTrue("TEST_PUBLISHING_WITH_MR_STAGING")
 
-			val modrinthAccessToken = env("MODRINTH_API_TOKEN")
-			val curseforgeAccessToken = env("CURSEFORGE_API_TOKEN")
+			val modrinthAccessToken = env("MR_KEY")
+			val curseforgeAccessToken = env("CF_KEY")
 			if (!envTrue("ENABLE_PUBLISHING")) {
 				dryRun = true
 			}
@@ -296,7 +272,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			changelog.set(rootProject.file("CHANGELOG.md").readText())
 			modLoaders.add(loader)
 
-			displayName = "${prop("mod.name")} $modVersion ${loader.replaceFirstChar(Char::titlecase)} $currentVersion"
+			displayName = "$modVersion for ${loader.replaceFirstChar(Char::titlecase)} $currentVersion"
 
 			modrinth(deps, currentVersion, additionalVersions, mrStaging, modrinthAccessToken)
 			if (!mrStaging) curseforge(deps, currentVersion, additionalVersions, false, curseforgeAccessToken)

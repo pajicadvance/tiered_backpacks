@@ -1,13 +1,15 @@
+import kotlin.text.replace
+
 plugins {
 	id("mod-platform")
-	id("fabric-loom")
+	id("net.fabricmc.fabric-loom")
 }
 
 platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = prop("deps.minecraft")
+			versionRange = prop("deps.minecraft").replace("snapshot-", "alpha.")
 		}
 		required("fabric-api") {
 			slug("fabric-api")
@@ -39,13 +41,6 @@ loom {
 	}
 }
 
-fabricApi {
-	configureDataGeneration {
-		outputDirectory = file("${rootDir}/versions/datagen/${stonecutter.current.version.split("-")[0]}/src/main/generated")
-		client = true
-	}
-}
-
 repositories {
 	mavenCentral()
 	strictMaven("https://maven.terraformersmc.com/", "com.terraformersmc") { name = "TerraformersMC" }
@@ -54,21 +49,9 @@ repositories {
 
 dependencies {
 	minecraft("com.mojang:minecraft:${prop("deps.minecraft")}")
-	mappings(
-		loom.layered {
-			officialMojangMappings()
-			if (hasProperty("deps.parchment")) parchment("org.parchmentmc.data:parchment-${prop("deps.parchment")}@zip")
-		})
-	modImplementation(libs.fabric.loader)
+	implementation(libs.fabric.loader)
 	implementation(libs.moulberry.mixinconstraints)
 	include(libs.moulberry.mixinconstraints)
-	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
-}
-
-stonecutter {
-	replacements.string(current.parsed >= "1.21.11") {
-		replace("ResourceLocation", "Identifier")
-		replace("location()", "identifier()")
-	}
+	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
+	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 }

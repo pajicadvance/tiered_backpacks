@@ -19,7 +19,7 @@ abstract class ModPlatformExtension {
 	abstract val dependencies: DependenciesConfig
 
 	init {
-		requiredJava.convention(JavaVersion.VERSION_21)
+		requiredJava.convention(JavaVersion.VERSION_25)
 	}
 
 	fun dependencies(action: Action<DependenciesConfig>) {

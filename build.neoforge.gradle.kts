@@ -20,12 +20,6 @@ neoForge {
 	accessTransformers.from(rootProject.file("src/main/resources/aw/${stonecutter.current.version}.cfg"))
 	validateAccessTransformers = true
 
-	if (hasProperty("deps.parchment")) parchment {
-		val (mc, ver) = (property("deps.parchment") as String).split(':')
-		mappingsVersion = ver
-		minecraftVersion = mc
-	}
-
 	runs {
 		register("client") {
 			client()
@@ -45,7 +39,6 @@ neoForge {
 			sourceSet(sourceSets["main"])
 		}
 	}
-	sourceSets["main"].resources.srcDir("${rootDir}/versions/datagen/${stonecutter.current.version.split("-")[0]}/src/main/generated")
 }
 
 repositories {
@@ -60,11 +53,4 @@ dependencies {
 
 tasks.named("createMinecraftArtifacts") {
 	dependsOn(tasks.named("stonecutterGenerate"))
-}
-
-stonecutter {
-	replacements.string(current.parsed >= "1.21.11") {
-		replace("ResourceLocation", "Identifier")
-		replace("location()", "identifier()")
-	}
 }
