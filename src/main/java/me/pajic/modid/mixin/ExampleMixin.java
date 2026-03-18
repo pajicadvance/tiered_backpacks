@@ -10,7 +10,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftServer.class)
 public class ExampleMixin {
 
-	@Inject(method = "loadLevel", at = @At("RETURN"))
+	@Inject(
+			method = "loadLevel",
+			at = @At("RETURN")
+	)
 	private void afterLoadLevel(CallbackInfo ci) {
 		ModTemplate.debugLog("Level Loaded!");
 	}
