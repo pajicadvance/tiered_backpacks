@@ -18,6 +18,10 @@ platform {
 		required("fabricloader") {
 			versionRange = ">=${libs.fabric.loader.get().version}"
 		}
+		required("fzzy_config") {
+			slug("fzzy-config")
+			versionRange = "*"
+		}
 		optional("modmenu") {}
 	}
 }

@@ -12,6 +12,10 @@ platform {
 		required("neoforge") {
 			forgeVersionRange = "[1,)"
 		}
+		required("fzzy_config") {
+			slug("fzzy-config")
+			forgeVersionRange = "[0,)"
+		}
 	}
 }
 
