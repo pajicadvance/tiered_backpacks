@@ -6,13 +6,13 @@ package me.pajic.modid.platform.neoforge;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @EventBusSubscriber(modid = ModTemplate.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {
 
 	@SubscribeEvent
-	public static void onClientSetup(final FMLClientSetupEvent event) {
+	public static void onClientSetup(final FMLCommonSetupEvent event) {
 		ModTemplate.onInitializeClient();
 	}
 }
