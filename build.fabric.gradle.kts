@@ -9,7 +9,7 @@ platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = prop("deps.minecraft").replace("snapshot-", "alpha.").replace("pre-", "pre.")
+			versionRange = prop("deps.minecraft").replace("pre-", "pre.").replace("rc-", "rc.")
 		}
 		required("fabric-api") {
 			slug("fabric-api")
