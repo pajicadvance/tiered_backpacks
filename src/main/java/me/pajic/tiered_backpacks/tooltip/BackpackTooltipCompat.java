@@ -1,5 +1,4 @@
 package me.pajic.tiered_backpacks.tooltip;
-/*
 
 import com.misterpemodder.shulkerboxtooltip.api.ShulkerBoxTooltipApi;
 import com.misterpemodder.shulkerboxtooltip.api.provider.PreviewProviderRegistry;
@@ -23,4 +22,3 @@ public class BackpackTooltipCompat implements ShulkerBoxTooltipApi {
         registry.register(TieredBackpacks.id("backpack_tooltip"), new BackpackPreviewProvider(), items);
     }
 }
-*/

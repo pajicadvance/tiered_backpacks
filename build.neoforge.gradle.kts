@@ -54,6 +54,7 @@ repositories {
 
 dependencies {
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
+	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
 }
 
 tasks.named("createMinecraftArtifacts") {

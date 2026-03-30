@@ -8,7 +8,9 @@ import me.pajic.tiered_backpacks.item.ModItems;
 import me.pajic.tiered_backpacks.menu.ModMenuTypes;
 import me.pajic.tiered_backpacks.network.ModNetworking;
 import me.pajic.tiered_backpacks.recipe.ModRecipes;
+import me.pajic.tiered_backpacks.tooltip.PreviewExtensionPoint;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
+import me.pajic.tiered_backpacks.util.CompatFlags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,7 +31,7 @@ public class NeoforgeEntrypoint {
 	@SubscribeEvent
 	private static void onCommonSetup(FMLCommonSetupEvent event) {
 		TieredBackpacks.onInitialize();
-		//if (CompatFlags.SHULKER_BOX_TOOLTIP_LOADED) PreviewExtensionPoint.register();
+		if (CompatFlags.SHULKER_BOX_TOOLTIP_LOADED) PreviewExtensionPoint.register();
 	}
 
 	@SubscribeEvent

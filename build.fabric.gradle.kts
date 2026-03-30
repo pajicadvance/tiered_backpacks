@@ -58,4 +58,5 @@ dependencies {
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
+	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
 }

@@ -1,1 +1,1 @@
-- Updated to Minecraft 26.1.
+- Re-enabled Shulker Box Tooltip compatibility.

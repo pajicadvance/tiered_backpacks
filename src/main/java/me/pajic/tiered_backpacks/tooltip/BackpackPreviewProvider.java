@@ -1,5 +1,4 @@
 package me.pajic.tiered_backpacks.tooltip;
-/*
 
 import com.misterpemodder.shulkerboxtooltip.api.PreviewContext;
 import com.misterpemodder.shulkerboxtooltip.api.color.ColorKey;
@@ -27,7 +26,7 @@ public class BackpackPreviewProvider implements PreviewProvider {
     @Override
     public List<ItemStack> getInventory(@NotNull PreviewContext context) {
         ItemContainerContents contents = context.stack().getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
-        return contents.stream().toList();
+        return contents.allItemsCopyStream().toList();
     }
 
     @Override
@@ -53,4 +52,3 @@ public class BackpackPreviewProvider implements PreviewProvider {
 				ColorKey.ofRgb(stack.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER).getColor());
     }
 }
-*/
