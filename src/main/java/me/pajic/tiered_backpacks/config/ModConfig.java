@@ -6,9 +6,7 @@ import me.fzzyhmstrs.fzzy_config.annotations.Version;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedAny;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
-import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum;
 import me.pajic.tiered_backpacks.TieredBackpacks;
-import me.pajic.tiered_backpacks.util.BackpackAccessorySlot;
 import me.pajic.tiered_backpacks.util.BackpackDimensions;
 
 @Version(version = 1)
@@ -30,5 +28,4 @@ public class ModConfig extends Config {
 	@RequiresAction(action = Action.RESTART) public ValidatedBoolean canEquipInChestSlot = new ValidatedBoolean(false);
 	public ValidatedBoolean canStoreShulkers = new ValidatedBoolean(false);
 	public ValidatedBoolean preventUnequipWhenNotEmpty = new ValidatedBoolean(false);
-	@RequiresAction(action = Action.RESTART) public ValidatedEnum<BackpackAccessorySlot> accessorySlot = new ValidatedEnum<>(BackpackAccessorySlot.BACK);
 }

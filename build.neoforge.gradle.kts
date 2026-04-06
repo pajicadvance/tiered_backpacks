@@ -50,11 +50,14 @@ repositories {
 	strictMaven("https://maven.fzzyhmstrs.me/", "me.fzzyhmstrs") { name = "Fzzy Config" }
 	strictMaven("https://thedarkcolour.github.io/KotlinForForge/") { name = "KotlinForForge" }
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+	maven("https://maven.ladysnake.org/releases") { name = "Ladysnake Libs" }
+	maven("https://maven.nucleoid.xyz/releases") { name = "Nucleoid" }
 }
 
 dependencies {
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
+	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
 }
 
 tasks.named("createMinecraftArtifacts") {

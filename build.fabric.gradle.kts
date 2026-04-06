@@ -48,6 +48,8 @@ repositories {
 	strictMaven("https://maven.fzzyhmstrs.me/", "me.fzzyhmstrs") { name = "Fzzy Config" }
 	strictMaven("https://maven.terraformersmc.com/", "com.terraformersmc") { name = "TerraformersMC" }
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+	maven("https://maven.ladysnake.org/releases") { name = "Ladysnake Libs" }
+	maven("https://maven.nucleoid.xyz/releases") { name = "Nucleoid" }
 }
 
 dependencies {
@@ -57,4 +59,6 @@ dependencies {
 	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
+	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
+	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 }

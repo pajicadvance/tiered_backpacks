@@ -10,6 +10,7 @@ import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SmithingRecipe;
 import org.jetbrains.annotations.Nullable;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,14 +26,15 @@ public abstract class SmithingMenuMixin extends ItemCombinerMenu {
     @Inject(
 			method = "lambda$createResult$0",
             at = @At(
-                    value = "FIELD",
-                    target = "Lnet/minecraft/world/inventory/SmithingMenu;resultSlots:Lnet/minecraft/world/inventory/ResultContainer;",
-                    ordinal = 0
-            )
+					value = "FIELD",
+					target = "Lnet/minecraft/world/inventory/SmithingMenu;resultSlots:Lnet/minecraft/world/inventory/ResultContainer;",
+					ordinal = 0,
+					opcode = Opcodes.GETFIELD
+			)
     )
     private void handleDiamondBackpackUpgrade(
             CallbackInfo ci,
-            @Local(argsOnly = true) RecipeHolder<SmithingRecipe> recipe,
+            @Local(argsOnly = true, name = "recipe") RecipeHolder<SmithingRecipe> recipe,
             @Local(name = "result") ItemStack result
     ) {
         if (recipe.id().identifier().equals(TieredBackpacks.id("netherite_backpack_smithing"))) {

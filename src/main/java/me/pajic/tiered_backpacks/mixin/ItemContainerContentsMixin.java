@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.equipment.Equippable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,20 +23,21 @@ import java.util.function.Consumer;
 public class ItemContainerContentsMixin {
 
 	@WrapMethod(method = "addToTooltip")
-	private void addAttachedBackpackTooltip(Item.TooltipContext context, Consumer<Component> tooltipAdder, TooltipFlag flag, DataComponentGetter componentGetter, Operation<Void> original) {
+	private void addAttachedBackpackTooltip(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter components, Operation<Void> original) {
 		if (TieredBackpacks.CONFIG.canAttachToChestplate.get()) {
-			Equippable equippable = componentGetter.get(DataComponents.EQUIPPABLE);
-			if (equippable != null && equippable.slot() == EquipmentSlot.CHEST) {
-				BackpackTier tier = componentGetter.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER);
-				tooltipAdder.accept(Component.translatable(
+			Equippable equippable = components.get(DataComponents.EQUIPPABLE);
+			ItemAttributeModifiers modifiers = components.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+			if (equippable != null && equippable.slot() == EquipmentSlot.CHEST && modifiers != ItemAttributeModifiers.EMPTY) {
+				BackpackTier tier = components.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER);
+				consumer.accept(Component.translatable(
 						"text.tiered_backpacks.attachment",
 						Component.translatable(
 								"tiered_backpacks.backpackTier." +
-										tier.getSerializedName().toUpperCase()
+								tier.getSerializedName().toUpperCase()
 						).withColor(tier.getColor())
 				).withStyle(ChatFormatting.BLUE));
 			}
 		}
-		original.call(context, tooltipAdder, flag, componentGetter);
+		original.call(context, consumer, flag, components);
 	}
 }

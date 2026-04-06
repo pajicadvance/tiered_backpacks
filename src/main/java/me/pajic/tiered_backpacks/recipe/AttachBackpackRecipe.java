@@ -3,13 +3,16 @@ package me.pajic.tiered_backpacks.recipe;
 import com.mojang.serialization.MapCodec;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
+import me.pajic.tiered_backpacks.item.ModItems;
 import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -31,6 +34,7 @@ public class AttachBackpackRecipe extends CustomRecipe {
 		if (!TieredBackpacks.CONFIG.canAttachToChestplate.get() || input.size() != 2) {
 			return false;
 		} else {
+			ItemStack chestplate = ItemStack.EMPTY;
 			boolean hasBackpack = false;
 			boolean hasChestplate = false;
 			for (int i = 0; i < input.size(); i++) {
@@ -39,6 +43,7 @@ public class AttachBackpackRecipe extends CustomRecipe {
 					if (itemStack.is(ItemTags.CHEST_ARMOR)) {
 						if (hasChestplate) return false;
 						hasChestplate = true;
+						chestplate = itemStack.copy();
 					} else if (itemStack.is(BackpackUtil.BACKPACKS)) {
 						if (hasBackpack) return false;
 						hasBackpack = true;
@@ -46,8 +51,15 @@ public class AttachBackpackRecipe extends CustomRecipe {
 					}
 				}
 			}
-			return hasBackpack && hasChestplate;
+			if (hasBackpack && hasChestplate) {
+				if (backpack.is(ModItems.NETHERITE_BACKPACK)) {
+					DamageResistant resist = chestplate.get(DataComponents.DAMAGE_RESISTANT);
+					return resist != null && resist.types().stream().anyMatch(type -> type.is(DamageTypeTags.IS_FIRE));
+				}
+				return true;
+			}
 		}
+		return false;
 	}
 
 	@Override

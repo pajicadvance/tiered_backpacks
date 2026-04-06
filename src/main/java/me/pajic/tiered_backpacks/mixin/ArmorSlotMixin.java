@@ -19,7 +19,7 @@ public class ArmorSlotMixin {
             method = "mayPickup",
             at = @At("RETURN")
     )
-    private boolean modifyMayPickup(boolean original, @Local(name = "itemStack") ItemStack itemStack, @Local(argsOnly = true) Player player) {
+    private boolean modifyMayPickup(boolean original, @Local(name = "itemStack") ItemStack itemStack, @Local(argsOnly = true, name = "player") Player player) {
         return !player.isCreative() && TieredBackpacks.CONFIG.preventUnequipWhenNotEmpty.get() && BackpackUtil.isValidContainerHolder(itemStack) ?
 				itemStack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY) == ItemContainerContents.EMPTY : original;
     }

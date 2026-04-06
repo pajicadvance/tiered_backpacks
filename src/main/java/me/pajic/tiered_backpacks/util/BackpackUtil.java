@@ -16,13 +16,14 @@ public class BackpackUtil {
 	public static final TagKey<Item> BACKPACKS = TagKey.create(Registries.ITEM, TieredBackpacks.id("backpacks"));
 
 	public static void tryOpenBackpack(int openMethod, ServerPlayer player) {
-		ItemStack backpack = ItemStack.EMPTY;
-		switch (openMethod) {
-			case 0 -> backpack = player.getInventory().getNonEquipmentItems().stream()
+		ItemStack backpack = switch (openMethod) {
+			case 0 -> player.getInventory().getNonEquipmentItems().stream()
 					.filter(stack -> stack.is(BACKPACKS))
 					.findFirst().orElse(ItemStack.EMPTY);
-			case 1 -> backpack = player.getItemBySlot(EquipmentSlot.CHEST);
-		}
+			case 1 -> player.getItemBySlot(EquipmentSlot.CHEST);
+			case 2 -> TrinketsCompat.tryGetTrinketBackpack(player);
+			default -> ItemStack.EMPTY;
+		};
 		if (!backpack.isEmpty()) TieredBackpacks.xplat().openBackpackScreen(player, backpack);
 	}
 

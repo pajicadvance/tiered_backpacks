@@ -1,2 +1,3 @@
-- Fixed custom recipes from the mod causing a crash when they get serialized.
-- Relaxed MC version requirement so that I don't have to upload a new file every time MC gets a hotfix. No functional changes to the mod.
+- Added support for Trinkets Updated.
+- The Netherite Backpack can now only be attached to fireproof chestplates (like netherite).
+- Fixed backpacks showing "Attached backpack:" in the tooltip even when they're not attached to a chestplate when the "Allow equipping in chest slot" option is enabled.
