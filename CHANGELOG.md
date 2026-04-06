@@ -1,1 +1,2 @@
-- Re-enabled Shulker Box Tooltip compatibility.
+- Fixed custom recipes from the mod causing a crash when they get serialized.
+- Relaxed MC version requirement so that I don't have to upload a new file every time MC gets a hotfix. No functional changes to the mod.

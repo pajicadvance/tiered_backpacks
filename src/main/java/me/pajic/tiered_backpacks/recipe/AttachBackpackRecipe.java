@@ -20,13 +20,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class AttachBackpackRecipe extends CustomRecipe {
 
-	public static final MapCodec<AttachBackpackRecipe> MAP_CODEC = MapCodec.unit(AttachBackpackRecipe::new);
-	public static final StreamCodec<RegistryFriendlyByteBuf, AttachBackpackRecipe> STREAM_CODEC = StreamCodec.unit(new AttachBackpackRecipe());
+	private static final AttachBackpackRecipe INSTANCE = new AttachBackpackRecipe();
+	public static final MapCodec<AttachBackpackRecipe> MAP_CODEC = MapCodec.unit(INSTANCE);
+	public static final StreamCodec<RegistryFriendlyByteBuf, AttachBackpackRecipe> STREAM_CODEC = StreamCodec.unit(INSTANCE);
 
 	private ItemStack backpack = ItemStack.EMPTY;
 
 	@Override
-	public boolean matches(CraftingInput input, @NotNull Level level) {
+	public boolean matches(@NotNull CraftingInput input, @NotNull Level level) {
 		if (!TieredBackpacks.CONFIG.canAttachToChestplate.get() || input.size() != 2) {
 			return false;
 		} else {

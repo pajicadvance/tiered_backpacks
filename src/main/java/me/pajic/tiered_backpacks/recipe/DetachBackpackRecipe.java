@@ -21,11 +21,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class DetachBackpackRecipe extends CustomRecipe {
 
-	public static final MapCodec<DetachBackpackRecipe> MAP_CODEC = MapCodec.unit(DetachBackpackRecipe::new);
-	public static final StreamCodec<RegistryFriendlyByteBuf, DetachBackpackRecipe> STREAM_CODEC = StreamCodec.unit(new DetachBackpackRecipe());
+	private static final DetachBackpackRecipe INSTANCE = new DetachBackpackRecipe();
+	public static final MapCodec<DetachBackpackRecipe> MAP_CODEC = MapCodec.unit(INSTANCE);
+	public static final StreamCodec<RegistryFriendlyByteBuf, DetachBackpackRecipe> STREAM_CODEC = StreamCodec.unit(INSTANCE);
 
 	@Override
-	public boolean matches(CraftingInput input, @NotNull Level level) {
+	public boolean matches(@NotNull CraftingInput input, @NotNull Level level) {
 		if (!TieredBackpacks.CONFIG.canAttachToChestplate.get() || input.size() != 1) return false;
 		ItemStack itemStack = input.getItem(0);
 		return !itemStack.isEmpty() && BackpackUtil.isChestplateWithBackpackAttached(itemStack);
