@@ -1,3 +1,1 @@
-- Added support for Trinkets Updated.
-- The Netherite Backpack can now only be attached to fireproof chestplates (like netherite).
-- Fixed backpacks showing "Attached backpack:" in the tooltip even when they're not attached to a chestplate when the "Allow equipping in chest slot" option is enabled.
+- Changed mod ID for Trinkets Updated to match the latest version.
