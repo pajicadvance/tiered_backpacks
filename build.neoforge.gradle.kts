@@ -58,6 +58,7 @@ dependencies {
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
 	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
+	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 }
 
 tasks.named("createMinecraftArtifacts") {

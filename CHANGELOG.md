@@ -1,1 +1,1 @@
-- Changed mod ID for Trinkets Updated to match the latest version.
+- "Prevent unequip when not empty" option now works for backpacks equipped in trinket slots.

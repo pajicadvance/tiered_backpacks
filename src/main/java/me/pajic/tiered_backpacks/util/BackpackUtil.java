@@ -4,12 +4,16 @@ import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.GameType;
 
 public class BackpackUtil {
 
@@ -36,6 +40,42 @@ public class BackpackUtil {
 			case DIAMOND -> TieredBackpacks.CONFIG.diamondSize.get();
 			case NETHERITE -> TieredBackpacks.CONFIG.netheriteSize.get();
 		};
+	}
+
+	public static Item.Properties createProperties(BackpackTier tier) {
+		return tier == BackpackTier.NETHERITE ?
+				TieredBackpacks.CONFIG.canEquipInChestSlot.get() ? new Item.Properties()
+						.stacksTo(1)
+						.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)
+						.component(ModDataComponents.BACKPACK_TIER, tier)
+						.equippable(EquipmentSlot.CHEST)
+						.fireResistant()
+						.setId(ResourceKey.create(Registries.ITEM, TieredBackpacks.id(tier.getSerializedName() + "_backpack"))) :
+						new Item.Properties()
+						.stacksTo(1)
+						.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)
+						.component(ModDataComponents.BACKPACK_TIER, tier)
+						.fireResistant()
+						.setId(ResourceKey.create(Registries.ITEM, TieredBackpacks.id(tier.getSerializedName() + "_backpack")))
+				: TieredBackpacks.CONFIG.canEquipInChestSlot.get() ? new Item.Properties()
+						.stacksTo(1)
+						.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)
+						.component(ModDataComponents.BACKPACK_TIER, tier)
+						.equippable(EquipmentSlot.CHEST)
+						.setId(ResourceKey.create(Registries.ITEM, TieredBackpacks.id(tier.getSerializedName() + "_backpack"))) :
+						new Item.Properties()
+						.stacksTo(1)
+						.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)
+						.component(ModDataComponents.BACKPACK_TIER, tier)
+						.setId(ResourceKey.create(Registries.ITEM, TieredBackpacks.id(tier.getSerializedName() + "_backpack")));
+	}
+
+	public static boolean canUnequipBackpack(Player player, ItemStack backpack) {
+		GameType mode = player.gameMode();
+		if (mode != null && mode.isSurvival() && TieredBackpacks.CONFIG.preventUnequipWhenNotEmpty.get() && BackpackUtil.isValidContainerHolder(backpack)) {
+			return backpack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY) == ItemContainerContents.EMPTY;
+		}
+		return true;
 	}
 
 	public static boolean isValidContainerHolder(ItemStack stack) {
