@@ -1,1 +1,1 @@
-- "Prevent unequip when not empty" option now works for backpacks equipped in trinket slots.
+- Backpacks attached to chestplates will now be returned to the player when the chestplate breaks.
