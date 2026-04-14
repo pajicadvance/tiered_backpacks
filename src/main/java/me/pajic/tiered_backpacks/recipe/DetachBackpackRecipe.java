@@ -1,7 +1,6 @@
 package me.pajic.tiered_backpacks.recipe;
 
 import com.mojang.serialization.MapCodec;
-import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import me.pajic.tiered_backpacks.item.ModItems;
 import me.pajic.tiered_backpacks.util.BackpackTier;
@@ -27,7 +26,7 @@ public class DetachBackpackRecipe extends CustomRecipe {
 
 	@Override
 	public boolean matches(@NotNull CraftingInput input, @NotNull Level level) {
-		if (!TieredBackpacks.CONFIG.canAttachToChestplate.get() || input.size() != 1) return false;
+		if (input.size() != 1) return false;
 		ItemStack itemStack = input.getItem(0);
 		return !itemStack.isEmpty() && BackpackUtil.isChestplateWithBackpackAttached(itemStack);
 	}

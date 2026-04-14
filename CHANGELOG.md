@@ -1,1 +1,2 @@
-- Backpacks attached to chestplates will now be returned to the player when the chestplate breaks.
+- Added recipe unlock conditions.
+- Allow detaching backpacks from chestplates when "Allow attaching to chestplate" is off.

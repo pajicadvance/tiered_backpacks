@@ -83,8 +83,7 @@ public class BackpackUtil {
 	}
 
 	public static boolean isChestplateWithBackpackAttached(ItemStack stack) {
-		return TieredBackpacks.CONFIG.canAttachToChestplate.get() &&
-				stack.is(ItemTags.CHEST_ARMOR) &&
+		return stack.is(ItemTags.CHEST_ARMOR) &&
 				stack.has(DataComponents.CONTAINER) &&
 				stack.has(ModDataComponents.BACKPACK_TIER);
 	}

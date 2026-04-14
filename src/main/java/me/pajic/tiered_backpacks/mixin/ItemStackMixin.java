@@ -54,7 +54,7 @@ public abstract class ItemStackMixin {
 					target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V"
 			)
 	)
-	private void detachToolPouchOnBreak(
+	private void detachBackpackOnBreak(
 			int newDamage,
 			@Nullable /*? fabric {*/ServerPlayer/*?} else {*//*LivingEntity*//*?}*/ player,
 			Consumer<Item> onBreak,
