@@ -1,6 +1,8 @@
 package me.pajic.tiered_backpacks.util;
 
 import me.pajic.tiered_backpacks.TieredBackpacks;
+import me.pajic.tiered_backpacks.compat.OhmegaCompat;
+import me.pajic.tiered_backpacks.compat.TrinketsCompat;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -25,7 +27,11 @@ public class BackpackUtil {
 					.filter(stack -> stack.is(BACKPACKS))
 					.findFirst().orElse(ItemStack.EMPTY);
 			case 1 -> player.getItemBySlot(EquipmentSlot.CHEST);
-			case 2 -> TrinketsCompat.tryGetTrinketBackpack(player);
+			case 2 -> {
+				if (CompatFlags.TRINKETS_LOADED) yield TrinketsCompat.tryGetTrinketBackpack(player);
+				if (CompatFlags.OHMEGA_LOADED) yield OhmegaCompat.tryGetOhmegaBackpack(player);
+				yield ItemStack.EMPTY;
+			}
 			default -> ItemStack.EMPTY;
 		};
 		if (!backpack.isEmpty()) TieredBackpacks.xplat().openBackpackScreen(player, backpack);

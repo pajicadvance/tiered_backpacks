@@ -1,2 +1,2 @@
-- Added recipe unlock conditions.
-- Allow detaching backpacks from chestplates when "Allow attaching to chestplate" is off.
+- Added support for Ohmega.
+- Fixed startup issue on latest NeoForge.

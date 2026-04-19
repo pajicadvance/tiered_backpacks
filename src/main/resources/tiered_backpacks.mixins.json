@@ -1,7 +1,7 @@
 {
   "package": "me.pajic.tiered_backpacks.mixin",
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.8.7",
   "compatibilityLevel": "${java}",
   "injectors": {
     "defaultRequire": 1

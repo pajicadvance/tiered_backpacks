@@ -1,8 +1,9 @@
 package me.pajic.tiered_backpacks.item;
 
+import me.pajic.tiered_backpacks.compat.OhmegaCompat;
 import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.CompatFlags;
-import me.pajic.tiered_backpacks.util.TrinketsCompat;
+import me.pajic.tiered_backpacks.compat.TrinketsCompat;
 import net.minecraft.world.item.Item;
 
 public class ModItems {
@@ -16,6 +17,7 @@ public class ModItems {
 
 	private static BackpackItem makeBackpack(BackpackTier tier) {
 		if (CompatFlags.TRINKETS_LOADED) return TrinketsCompat.makeTrinketBackpack(tier);
+		if (CompatFlags.OHMEGA_LOADED) return OhmegaCompat.makeOhmegaBackpack(tier);
 		return new BackpackItem(tier);
 	}
 

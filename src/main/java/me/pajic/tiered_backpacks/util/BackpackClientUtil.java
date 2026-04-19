@@ -1,6 +1,8 @@
 package me.pajic.tiered_backpacks.util;
 
 import me.pajic.tiered_backpacks.TieredBackpacks;
+import me.pajic.tiered_backpacks.compat.OhmegaCompat;
+import me.pajic.tiered_backpacks.compat.TrinketsCompat;
 import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.network.ModNetworking;
 import net.minecraft.client.Minecraft;
@@ -13,6 +15,7 @@ public class BackpackClientUtil {
 		if (ModKeybinds.OPEN_BACKPACK.consumeClick() && client.player != null && client.level != null) {
 			ItemStack chestItem = ItemStack.EMPTY;
 			if (CompatFlags.TRINKETS_LOADED) chestItem = TrinketsCompat.tryGetTrinketBackpack(client.player);
+			if (CompatFlags.OHMEGA_LOADED) chestItem = OhmegaCompat.tryGetOhmegaBackpack(client.player);
 			if (!chestItem.isEmpty()) TieredBackpacks.xplat().sendToServer(new ModNetworking.C2SOpenBackpackPayload(2));
 			else {
 				chestItem = client.player.getItemBySlot(EquipmentSlot.CHEST);
