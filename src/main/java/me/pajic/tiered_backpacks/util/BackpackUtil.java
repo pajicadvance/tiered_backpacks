@@ -4,6 +4,7 @@ import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.compat.OhmegaCompat;
 import me.pajic.tiered_backpacks.compat.TrinketsCompat;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
+import me.pajic.tiered_backpacks.item.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -92,5 +93,16 @@ public class BackpackUtil {
 		return stack.is(ItemTags.CHEST_ARMOR) &&
 				stack.has(DataComponents.CONTAINER) &&
 				stack.has(ModDataComponents.BACKPACK_TIER);
+	}
+
+	public static ItemStack stackByTier(ItemStack input) {
+		return switch (input.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER)) {
+			case LEATHER -> new ItemStack(ModItems.LEATHER_BACKPACK);
+			case COPPER -> new ItemStack(ModItems.COPPER_BACKPACK);
+			case IRON -> new ItemStack(ModItems.IRON_BACKPACK);
+			case GOLDEN -> new ItemStack(ModItems.GOLDEN_BACKPACK);
+			case DIAMOND -> new ItemStack(ModItems.DIAMOND_BACKPACK);
+			case NETHERITE -> new ItemStack(ModItems.NETHERITE_BACKPACK);
+		};
 	}
 }

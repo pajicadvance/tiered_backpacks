@@ -3,8 +3,6 @@ package me.pajic.tiered_backpacks.mixin;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
-import me.pajic.tiered_backpacks.item.ModItems;
-import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,14 +61,7 @@ public abstract class ItemStackMixin {
 	) {
 		ItemStack savedStack = stackRef.get();
 		if (isEmpty() && BackpackUtil.isChestplateWithBackpackAttached(savedStack) && player != null) {
-			ItemStack backpack = switch (savedStack.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER)) {
-				case LEATHER -> new ItemStack(ModItems.LEATHER_BACKPACK);
-				case COPPER -> new ItemStack(ModItems.COPPER_BACKPACK);
-				case IRON -> new ItemStack(ModItems.IRON_BACKPACK);
-				case GOLDEN -> new ItemStack(ModItems.GOLDEN_BACKPACK);
-				case DIAMOND -> new ItemStack(ModItems.DIAMOND_BACKPACK);
-				case NETHERITE -> new ItemStack(ModItems.NETHERITE_BACKPACK);
-			};
+			ItemStack backpack = BackpackUtil.stackByTier(savedStack);
 			backpack.set(DataComponents.CONTAINER, savedStack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 			DyedItemColor dye = savedStack.get(ModDataComponents.STORED_BACKPACK_DYE);
 			if (dye != null) backpack.set(DataComponents.DYED_COLOR, dye);

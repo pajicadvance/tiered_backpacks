@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack;
 public class TrinketsCompat {
 
 	public static ItemStack tryGetTrinketBackpack(LivingEntity entity) {
-		var list = TrinketsApi.getAttachment(entity).getEquipped(stack -> stack.is(BackpackUtil.BACKPACKS));
-		if (!list.isEmpty()) return list.getFirst().getB();
+		var list = TrinketsApi.getAttachment(entity).equipped(stack -> stack.is(BackpackUtil.BACKPACKS), false);
+		if (!list.isEmpty()) return list.getFirst().get();
 		return ItemStack.EMPTY;
 	}
 

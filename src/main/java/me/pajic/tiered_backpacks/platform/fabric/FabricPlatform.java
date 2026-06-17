@@ -52,12 +52,12 @@ public class FabricPlatform implements Platform {
 					return new BackpackMenu(i, inventory, backpack);
 				}
 
-				@Override
-				public @NotNull Component getDisplayName() {
+				@Override @NotNull
+				public Component getDisplayName() {
 					return backpack.getDisplayName();
 				}
 
-				@Override
+				@Override @NotNull
 				public ModNetworking.S2CBackpackScreenPayload getScreenOpeningData(@NotNull ServerPlayer serverPlayer) {
 					return new ModNetworking.S2CBackpackScreenPayload(backpack);
 				}

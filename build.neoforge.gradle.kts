@@ -57,7 +57,7 @@ repositories {
 dependencies {
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-neoforge")
-	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
+	compileOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	compileOnly("io.github.swackyy:ohmega-neoforge:${prop("deps.ohmega")}")
 	/*runtimeOnly("io.github.swackyy:ohmega-neoforge:${prop("deps.ohmega")}")

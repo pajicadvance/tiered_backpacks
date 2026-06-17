@@ -1,2 +1,1 @@
-- Added support for Ohmega.
-- Fixed startup issue on latest NeoForge.
+- Update to Fabric 26.2.

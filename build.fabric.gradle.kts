@@ -7,7 +7,7 @@ platform {
 	loader = "fabric"
 	dependencies {
 		required("minecraft") {
-			versionRange = ">=${prop("deps.minecraft")}"
+			versionRange = ">=${prop("deps.minecraft").replace("rc-", "rc.")}"
 		}
 		required("fabric-api") {
 			slug("fabric-api")
@@ -59,7 +59,7 @@ dependencies {
 	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
 	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
-	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
+	compileOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	compileOnly("io.github.swackyy:ohmega-fabric:${prop("deps.ohmega")}")
 	/*runtimeOnly("io.github.swackyy:ohmega-fabric:${prop("deps.ohmega")}")

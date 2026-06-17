@@ -2,8 +2,6 @@ package me.pajic.tiered_backpacks.recipe;
 
 import com.mojang.serialization.MapCodec;
 import me.pajic.tiered_backpacks.component.ModDataComponents;
-import me.pajic.tiered_backpacks.item.ModItems;
-import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
@@ -36,14 +34,7 @@ public class DetachBackpackRecipe extends CustomRecipe {
 		ItemStack backpack = ItemStack.EMPTY;
 		ItemStack input = inputStacks.getItem(0);
 		if (BackpackUtil.isChestplateWithBackpackAttached(input)) {
-			backpack = switch (input.getOrDefault(ModDataComponents.BACKPACK_TIER, BackpackTier.LEATHER)) {
-				case LEATHER -> new ItemStack(ModItems.LEATHER_BACKPACK);
-				case COPPER -> new ItemStack(ModItems.COPPER_BACKPACK);
-				case IRON -> new ItemStack(ModItems.IRON_BACKPACK);
-				case GOLDEN -> new ItemStack(ModItems.GOLDEN_BACKPACK);
-				case DIAMOND -> new ItemStack(ModItems.DIAMOND_BACKPACK);
-				case NETHERITE -> new ItemStack(ModItems.NETHERITE_BACKPACK);
-			};
+			backpack = BackpackUtil.stackByTier(input);
 			backpack.set(DataComponents.CONTAINER, input.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 			DyedItemColor dye = input.get(ModDataComponents.STORED_BACKPACK_DYE);
 			if (dye != null) backpack.set(DataComponents.DYED_COLOR, dye);
