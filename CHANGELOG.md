@@ -1,1 +1,2 @@
-- Update to Fabric 26.2.
+- Opening a backpack now plays a sound for all nearby players.
+- The backpack screen can now also be closed with the "Open backpack" keybind (B).

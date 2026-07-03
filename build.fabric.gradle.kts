@@ -58,7 +58,7 @@ dependencies {
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
-	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
+	compileOnly("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
 	compileOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
 	compileOnly("io.github.swackyy:ohmega-fabric:${prop("deps.ohmega")}")

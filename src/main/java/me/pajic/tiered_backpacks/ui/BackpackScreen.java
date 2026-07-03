@@ -1,10 +1,12 @@
 package me.pajic.tiered_backpacks.ui;
 
 import me.pajic.tiered_backpacks.TieredBackpacks;
+import me.pajic.tiered_backpacks.keybind.ModKeybinds;
 import me.pajic.tiered_backpacks.util.BackpackDimensions;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -37,5 +39,14 @@ public class BackpackScreen extends AbstractContainerScreen<BackpackMenu> {
 		for (Slot slot : getMenu().slots) {
 			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT_TEXTURE, x + slot.x - 1, y + slot.y - 1, 18, 18);
 		}
+	}
+
+	@Override
+	public boolean keyPressed(@NotNull KeyEvent event) {
+		if (ModKeybinds.OPEN_BACKPACK.matches(event)) {
+			onClose();
+			return true;
+		}
+		return super.keyPressed(event);
 	}
 }

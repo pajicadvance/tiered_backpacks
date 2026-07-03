@@ -3,6 +3,7 @@ package me.pajic.tiered_backpacks.item;
 import me.pajic.tiered_backpacks.TieredBackpacks;
 import me.pajic.tiered_backpacks.util.BackpackTier;
 import me.pajic.tiered_backpacks.util.BackpackUtil;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,10 +17,14 @@ public class BackpackItem extends Item {
         super(BackpackUtil.createProperties(tier));
     }
 
-    @Override
-    public @NotNull InteractionResult use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
-        return TieredBackpacks.CONFIG.canOpenWithRightClick.get() ?
-				TieredBackpacks.xplat().openBackpackScreen(player, player.getItemInHand(hand)) :
-                super.use(level, player, hand);
+    @Override @NotNull
+    public InteractionResult use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
+		if (TieredBackpacks.CONFIG.canOpenWithRightClick.get()) {
+			player.startUsingItem(hand);
+			player.playSound(SoundEvents.BUNDLE_INSERT);
+			TieredBackpacks.xplat().openBackpackScreen(player, player.getItemInHand(hand));
+			return InteractionResult.SUCCESS;
+		}
+        return super.use(level, player, hand);
     }
 }

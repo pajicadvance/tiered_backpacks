@@ -9,6 +9,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,7 +36,10 @@ public class BackpackUtil {
 			}
 			default -> ItemStack.EMPTY;
 		};
-		if (!backpack.isEmpty()) TieredBackpacks.xplat().openBackpackScreen(player, backpack);
+		if (!backpack.isEmpty()) {
+			player.playSound(SoundEvents.BUNDLE_INSERT);
+			TieredBackpacks.xplat().openBackpackScreen(player, backpack);
+		}
 	}
 
 	public static BackpackDimensions getBackpackDimensions(ItemStack backpack) {

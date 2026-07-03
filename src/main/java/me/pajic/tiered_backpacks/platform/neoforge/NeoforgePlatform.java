@@ -6,7 +6,6 @@ package me.pajic.tiered_backpacks.platform.neoforge;
 import me.pajic.tiered_backpacks.platform.Platform;
 import me.pajic.tiered_backpacks.ui.BackpackMenu;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -42,7 +41,7 @@ public class NeoforgePlatform implements Platform {
 
 	@SuppressWarnings("resource")
 	@Override
-	public InteractionResult openBackpackScreen(Player player, ItemStack backpack) {
+	public void openBackpackScreen(Player player, ItemStack backpack) {
 		if (!player.level().isClientSide()) {
 			player.openMenu(
 					new SimpleMenuProvider((containerId, playerInventory, _) ->
@@ -53,7 +52,6 @@ public class NeoforgePlatform implements Platform {
 					)
 			);
 		}
-		return InteractionResult.PASS;
 	}
 }
 *///?}

@@ -12,7 +12,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -44,7 +43,7 @@ public class FabricPlatform implements Platform {
 
 	@SuppressWarnings("resource")
 	@Override
-	public InteractionResult openBackpackScreen(Player player, ItemStack backpack) {
+	public void openBackpackScreen(Player player, ItemStack backpack) {
 		if (!player.level().isClientSide()) {
 			player.openMenu(new ExtendedMenuProvider<ModNetworking.S2CBackpackScreenPayload>() {
 				@Override
@@ -62,9 +61,7 @@ public class FabricPlatform implements Platform {
 					return new ModNetworking.S2CBackpackScreenPayload(backpack);
 				}
 			});
-			return InteractionResult.SUCCESS;
 		}
-		return InteractionResult.PASS;
 	}
 }
 //?}
