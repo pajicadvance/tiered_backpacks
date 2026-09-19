@@ -1,0 +1,4 @@
+- Added Fabric 26.3 version.
+- Added NeoForge 26.2 version.
+- Added support for Curios API.
+- Added Turkish translation and cleaned up English translation ([#7](https://github.com/pajicadvance/tiered_backpacks/pull/7)).
