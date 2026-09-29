@@ -20,7 +20,8 @@ public class BackpackPreviewProvider implements PreviewProvider {
 
     @Override
     public boolean shouldDisplay(@NotNull PreviewContext context) {
-        return !getInventory(context).stream().allMatch(ItemStack::isEmpty);
+        return BackpackUtil.isValidContainerHolder(context.stack()) &&
+                !getInventory(context).stream().allMatch(ItemStack::isEmpty);
     }
 
     @Override
