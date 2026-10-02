@@ -2,7 +2,7 @@
 mod.id = "tiered_backpacks"
 mod.name = "Tiered Backpacks"
 mod.group = "me.pajic"
-mod.version = "1.0.19"
+mod.version = "1.0.20"
 mod.description = "Simple tiered backpacks"
 mod.authors = "pajic"
 mod.contributors = "Moonkey"

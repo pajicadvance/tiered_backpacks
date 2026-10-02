@@ -38,21 +38,21 @@ public class BackpackMenu extends AbstractContainerMenu {
             for (int i = 0; i < items.size(); i++) container.setItem(i, items.get(i));
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < columns; x++) {
-                    int slotX = width / 2 - columns * 9 + x * 18;
-                    int slotY = padding + titleSpace + y * 18;
+                    int slotX = width / 2 - columns * 9 + x * 18 + 1;
+                    int slotY = padding + titleSpace + y * 18 - 1;
                     addSlot(new BackpackSlot(container, y * columns + x, slotX, slotY));
                 }
             }
             for (int y = 0; y < 3; ++y) {
                 for (int x = 0; x < 9; ++x) {
-                    int slotX = width / 2 - 9 * 9 + x * 18;
-                    int slotY = height - padding - 4 * 18 - 3 + y * 18;
+                    int slotX = width / 2 - 9 * 9 + x * 18 + 1;
+                    int slotY = height - padding - 4 * 18 - 3 + y * 18 - 1;
                     this.addSlot(new BackpackSlot(playerInventory, x + y * 9 + 9, slotX, slotY));
                 }
             }
             for (int x = 0; x < 9; ++x) {
-                int slotX = width / 2 - 9 * 9 + x * 18;
-                int slotY = height - padding - 4 * 18 - 3 + 3 * 18 + 4;
+                int slotX = width / 2 - 9 * 9 + x * 18 + 1;
+                int slotY = height - padding - 4 * 18 - 3 + 3 * 18 + 4 - 1;
                 this.addSlot(new BackpackSlot(playerInventory, x, slotX, slotY));
             }
         } else {
