@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "minecraft:leather",
+    "#": ["minecraft:leather", "minecraft:rabbit_hide"],
     "c": "#c:chests/wooden"
   },
   "pattern": [
